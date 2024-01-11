@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch1p53rppebl7"]
+
+[ext_resource type="PackedScene" uid="uid://bik2cka8kpvms" path="res://src/Scenes/player.tscn" id="1_ksd41"]
+[ext_resource type="PackedScene" uid="uid://bw1h8psup8j52" path="res://src/Scenes/pellet.tscn" id="2_wsysb"]
+[ext_resource type="PackedScene" uid="uid://b2dcdj2htf6ni" path="res://src/Scenes/enemy.tscn" id="3_3af6w"]
+
+[node name="Main_Scene" type="Node2D"]
+position = Vector2(592, 336)
+
+[node name="Pellet" parent="." instance=ExtResource("2_wsysb")]
+position = Vector2(-64, 16)
+
+[node name="Player" parent="." instance=ExtResource("1_ksd41")]
+speed = null
+
+[node name="enemy" parent="." instance=ExtResource("3_3af6w")]
+position = Vector2(136, 40)
