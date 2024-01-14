@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2pb1eip3pwkc"
-path="res://.godot/imported/Enemy.png-1c64acb8657ac3e27058281b95238787.ctex"
+uid="uid://b31tf2un2n3um"
+path="res://.godot/imported/Pellet.png-09fc7faf129f217e955253d76489f5ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Aseprite/Enemy.png"
-dest_files=["res://.godot/imported/Enemy.png-1c64acb8657ac3e27058281b95238787.ctex"]
+source_file="res://src/Resources/Pellet.png"
+dest_files=["res://.godot/imported/Pellet.png-09fc7faf129f217e955253d76489f5ad.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

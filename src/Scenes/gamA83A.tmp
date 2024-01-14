@@ -1,0 +1,239 @@
+[gd_scene load_steps=15 format=3 uid="uid://ch1p53rppebl7"]
+
+[ext_resource type="Script" path="res://src/Scripts/Main.gd" id="1_ck5dw"]
+[ext_resource type="PackedScene" uid="uid://bik2cka8kpvms" path="res://src/Scenes/player.tscn" id="1_ksd41"]
+[ext_resource type="PackedScene" uid="uid://bw1h8psup8j52" path="res://src/Scenes/pellet.tscn" id="2_wsysb"]
+[ext_resource type="PackedScene" uid="uid://b2dcdj2htf6ni" path="res://src/Scenes/enemy.tscn" id="3_3af6w"]
+[ext_resource type="Script" path="res://src/Scripts/ScoreLabel.gd" id="4_d8b1a"]
+[ext_resource type="AudioStream" uid="uid://b0stwim77602b" path="res://src/Audio/pop.mp3" id="6_ni8fb"]
+[ext_resource type="Script" path="res://src/Scripts/Pause_Menu.gd" id="7_as4pa"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r46qc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttiad"]
+size = Vector2(64, 1088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgsbr"]
+size = Vector2(64, 1088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e81uj"]
+size = Vector2(1664, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qdhx"]
+size = Vector2(1664, 64)
+
+[sub_resource type="FontFile" id="FontFile_4tjuh"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/22/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/22/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/22/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="Theme_1vuov"]
+default_font = SubResource("FontFile_4tjuh")
+default_font_size = 32
+
+[node name="Game_Scene" type="Node2D"]
+script = ExtResource("1_ck5dw")
+
+[node name="Player" parent="." instance=ExtResource("1_ksd41")]
+position = Vector2(800, 448)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="enemy" parent="Enemies" instance=ExtResource("3_3af6w")]
+position = Vector2(800, -384)
+
+[node name="enemy2" parent="Enemies" instance=ExtResource("3_3af6w")]
+position = Vector2(256, -64)
+
+[node name="enemy3" parent="Enemies" instance=ExtResource("3_3af6w")]
+position = Vector2(1344, -64)
+
+[node name="Pellets" type="Node" parent="."]
+
+[node name="Pellet" parent="Pellets" instance=ExtResource("2_wsysb")]
+position = Vector2(800, 736)
+
+[node name="Pellet2" parent="Pellets" instance=ExtResource("2_wsysb")]
+position = Vector2(1184, 448)
+
+[node name="Pellet3" parent="Pellets" instance=ExtResource("2_wsysb")]
+position = Vector2(416, 448)
+
+[node name="enemy_world_boundary" type="Node2D" parent="."]
+visible = false
+
+[node name="enemy_world_boundary_bottom" type="Area2D" parent="enemy_world_boundary"]
+position = Vector2(800, 960)
+collision_mask = 4
+
+[node name="bottom" type="CollisionShape2D" parent="enemy_world_boundary/enemy_world_boundary_bottom"]
+shape = SubResource("WorldBoundaryShape2D_r46qc")
+
+[node name="player_world_boundary" type="Node2D" parent="."]
+visible = false
+
+[node name="player_world_boundary_right" type="StaticBody2D" parent="player_world_boundary"]
+position = Vector2(1664, 448)
+
+[node name="right" type="CollisionShape2D" parent="player_world_boundary/player_world_boundary_right"]
+shape = SubResource("RectangleShape2D_ttiad")
+
+[node name="player_world_boundary_left" type="StaticBody2D" parent="player_world_boundary"]
+position = Vector2(-64, 448)
+
+[node name="left" type="CollisionShape2D" parent="player_world_boundary/player_world_boundary_left"]
+shape = SubResource("RectangleShape2D_dgsbr")
+
+[node name="player_world_boundary_bottom" type="StaticBody2D" parent="player_world_boundary"]
+position = Vector2(800, 960)
+
+[node name="bottom" type="CollisionShape2D" parent="player_world_boundary/player_world_boundary_bottom"]
+shape = SubResource("RectangleShape2D_e81uj")
+
+[node name="player_world_boundary_top" type="StaticBody2D" parent="player_world_boundary"]
+position = Vector2(800, -64)
+
+[node name="top" type="CollisionShape2D" parent="player_world_boundary/player_world_boundary_top"]
+shape = SubResource("RectangleShape2D_0qdhx")
+
+[node name="PopSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ni8fb")
+
+[node name="UserInterface" type="Control" parent="."]
+visibility_layer = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = 800.0
+offset_top = 448.0
+offset_right = 840.0
+offset_bottom = 488.0
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 568.0
+offset_top = -384.0
+offset_right = 680.0
+offset_bottom = -340.0
+grow_horizontal = 0
+theme = SubResource("Theme_1vuov")
+text = "Score: 0
+High Score: 0"
+horizontal_alignment = 2
+script = ExtResource("4_d8b1a")
+
+[node name="Retry" type="ColorRect" parent="UserInterface"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.2
+anchor_top = -1.2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -752.0
+offset_top = -400.0
+offset_right = 760.0
+offset_bottom = 416.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 0.313726)
+
+[node name="Label" type="Label" parent="UserInterface/Retry"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = 432.0
+offset_right = 84.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press Enter to retry"
+
+[node name="Node" type="Node" parent="UserInterface"]
+process_mode = 2
+
+[node name="Paused" type="ColorRect" parent="UserInterface/Node"]
+visible = false
+anchors_preset = -1
+anchor_left = -1.2
+anchor_top = -1.2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1920.0
+offset_top = 1080.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 0.313726)
+script = ExtResource("7_as4pa")
+
+[node name="Title" type="Label" parent="UserInterface/Node/Paused"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 352.0
+offset_right = 825.0
+offset_bottom = 400.0
+text = "Paused"
+
+[node name="Button" type="Button" parent="UserInterface/Node/Paused"]
+layout_mode = 0
+offset_left = 712.0
+offset_top = 528.0
+offset_right = 885.0
+offset_bottom = 559.0
+text = "Return to Main Menu"
+
+[node name="Button2" type="Button" parent="UserInterface/Node/Paused"]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 480.0
+offset_right = 851.0
+offset_bottom = 511.0
+text = "Back to Game"
+
+[node name="Pause Button" type="Button" parent="UserInterface"]
+layout_mode = 0
+offset_left = -776.0
+offset_top = -416.0
+offset_right = -721.0
+offset_bottom = -385.0
+text = "Pause"
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="collected" from="Pellets/Pellet" to="." method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet" to="UserInterface/ScoreLabel" method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet2" to="." method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet2" to="UserInterface/ScoreLabel" method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet2" to="UserInterface/ScoreLabel" method="_on_pellet_2_collected"]
+[connection signal="collected" from="Pellets/Pellet3" to="." method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet3" to="UserInterface/ScoreLabel" method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet3" to="UserInterface/ScoreLabel" method="_on_pellet_3_collected"]
+[connection signal="pressed" from="UserInterface/Pause Button" to="UserInterface/Node/Paused" method="_on_pause_button_pressed"]

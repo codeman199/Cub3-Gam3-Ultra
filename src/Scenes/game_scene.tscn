@@ -1,0 +1,266 @@
+[gd_scene load_steps=21 format=3 uid="uid://ch1p53rppebl7"]
+
+[ext_resource type="Script" path="res://src/Scripts/Main.gd" id="1_ck5dw"]
+[ext_resource type="PackedScene" uid="uid://bik2cka8kpvms" path="res://src/Scenes/player.tscn" id="1_ksd41"]
+[ext_resource type="PackedScene" uid="uid://bw1h8psup8j52" path="res://src/Scenes/pellet.tscn" id="2_wsysb"]
+[ext_resource type="PackedScene" uid="uid://b2dcdj2htf6ni" path="res://src/Scenes/enemy.tscn" id="3_3af6w"]
+[ext_resource type="Script" path="res://src/Scripts/ScoreLabel.gd" id="4_d8b1a"]
+[ext_resource type="AudioStream" uid="uid://b0stwim77602b" path="res://src/Audio/pop.mp3" id="6_ni8fb"]
+[ext_resource type="Script" path="res://src/Scripts/Pause_Menu.gd" id="7_as4pa"]
+[ext_resource type="Theme" uid="uid://d4tqea8vri4y" path="res://src/Resources/Themes/Menus.tres" id="7_yiy4j"]
+[ext_resource type="Theme" uid="uid://mulacwjurnfv" path="res://src/Resources/Themes/Menu_Buttons.tres" id="9_hup8r"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r46qc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttiad"]
+size = Vector2(64, 1088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgsbr"]
+size = Vector2(64, 1088)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e81uj"]
+size = Vector2(1664, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qdhx"]
+size = Vector2(1664, 64)
+
+[sub_resource type="FontFile" id="FontFile_4tjuh"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/22/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/22/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/22/0/kerning_overrides/32/0 = Vector2(0, 0)
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/22/0 = Vector2(0, 0)
+cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="Theme_1vuov"]
+default_font = SubResource("FontFile_4tjuh")
+default_font_size = 32
+
+[sub_resource type="InputEventKey" id="InputEventKey_wbaxw"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_nle7i"]
+events = [SubResource("InputEventKey_wbaxw")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_2tvf4"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_yiq2d"]
+events = [SubResource("InputEventKey_2tvf4")]
+
+[node name="Game_Scene" type="Node2D"]
+script = ExtResource("1_ck5dw")
+
+[node name="Player" parent="." instance=ExtResource("1_ksd41")]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="enemy" parent="Enemies" instance=ExtResource("3_3af6w")]
+position = Vector2(0, -832)
+
+[node name="enemy2" parent="Enemies" instance=ExtResource("3_3af6w")]
+position = Vector2(-544, -512)
+
+[node name="enemy3" parent="Enemies" instance=ExtResource("3_3af6w")]
+position = Vector2(544, -512)
+
+[node name="Pellets" type="Node" parent="."]
+
+[node name="Pellet" parent="Pellets" instance=ExtResource("2_wsysb")]
+position = Vector2(0, 288)
+
+[node name="Pellet2" parent="Pellets" instance=ExtResource("2_wsysb")]
+position = Vector2(384, 0)
+
+[node name="Pellet3" parent="Pellets" instance=ExtResource("2_wsysb")]
+position = Vector2(-384, 0)
+
+[node name="enemy_world_boundary" type="Node2D" parent="."]
+
+[node name="enemy_world_boundary_bottom" type="Area2D" parent="enemy_world_boundary"]
+position = Vector2(0, 464)
+collision_mask = 4
+
+[node name="bottom" type="CollisionShape2D" parent="enemy_world_boundary/enemy_world_boundary_bottom"]
+position = Vector2(0, 48)
+shape = SubResource("WorldBoundaryShape2D_r46qc")
+
+[node name="player_world_boundary" type="Node2D" parent="."]
+
+[node name="player_world_boundary_right" type="StaticBody2D" parent="player_world_boundary"]
+position = Vector2(864, 0)
+
+[node name="right" type="CollisionShape2D" parent="player_world_boundary/player_world_boundary_right"]
+shape = SubResource("RectangleShape2D_ttiad")
+
+[node name="player_world_boundary_left" type="StaticBody2D" parent="player_world_boundary"]
+position = Vector2(-864, 0)
+
+[node name="left" type="CollisionShape2D" parent="player_world_boundary/player_world_boundary_left"]
+shape = SubResource("RectangleShape2D_dgsbr")
+
+[node name="player_world_boundary_bottom" type="StaticBody2D" parent="player_world_boundary"]
+position = Vector2(0, 512)
+
+[node name="bottom" type="CollisionShape2D" parent="player_world_boundary/player_world_boundary_bottom"]
+shape = SubResource("RectangleShape2D_e81uj")
+
+[node name="player_world_boundary_top" type="StaticBody2D" parent="player_world_boundary"]
+position = Vector2(0, -512)
+
+[node name="top" type="CollisionShape2D" parent="player_world_boundary/player_world_boundary_top"]
+shape = SubResource("RectangleShape2D_0qdhx")
+
+[node name="PopSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ni8fb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="UserInterface" type="Control" parent="."]
+top_level = true
+visibility_layer = 16
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1000.0
+offset_top = -552.0
+offset_right = 1000.0
+offset_bottom = 552.0
+
+[node name="GameUI" type="Control" parent="UserInterface"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 224.0
+offset_top = 120.0
+offset_right = 1760.0
+offset_bottom = 984.0
+
+[node name="ScoreLabel" type="Label" parent="UserInterface/GameUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -229.0
+offset_right = -40.0
+offset_bottom = 91.0
+grow_horizontal = 0
+theme = SubResource("Theme_1vuov")
+text = "Score: 0
+High Score: 0"
+horizontal_alignment = 2
+script = ExtResource("4_d8b1a")
+
+[node name="Pause Button" type="Button" parent="UserInterface/GameUI"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 79.0
+offset_bottom = 47.0
+shortcut = SubResource("Shortcut_nle7i")
+text = "Pause"
+
+[node name="Retry" type="ColorRect" parent="UserInterface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 0.556863)
+
+[node name="Label" type="Label" parent="UserInterface/Retry"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -112.0
+offset_right = 381.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_yiy4j")
+text = "Press Enter to Retry"
+
+[node name="Paused" type="ColorRect" parent="UserInterface"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_as4pa")
+
+[node name="Label" type="Label" parent="UserInterface/Paused"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -304.0
+offset_right = 145.0
+offset_bottom = -194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_yiy4j")
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Back to Game" type="Button" parent="UserInterface/Paused"]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 448.0
+offset_right = 1269.0
+offset_bottom = 566.0
+theme = ExtResource("9_hup8r")
+shortcut = SubResource("Shortcut_yiq2d")
+text = "Back to Game"
+
+[node name="Return to Main Menu" type="Button" parent="UserInterface/Paused"]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 600.0
+offset_right = 1415.0
+offset_bottom = 718.0
+theme = ExtResource("9_hup8r")
+text = "Return to Main Menu"
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="collected" from="Pellets/Pellet" to="." method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet" to="UserInterface/GameUI/ScoreLabel" method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet2" to="." method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet2" to="UserInterface/GameUI/ScoreLabel" method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet2" to="UserInterface/GameUI/ScoreLabel" method="_on_pellet_2_collected"]
+[connection signal="collected" from="Pellets/Pellet3" to="." method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet3" to="UserInterface/GameUI/ScoreLabel" method="_on_pellet_collected"]
+[connection signal="collected" from="Pellets/Pellet3" to="UserInterface/GameUI/ScoreLabel" method="_on_pellet_3_collected"]
+[connection signal="pressed" from="UserInterface/GameUI/Pause Button" to="UserInterface/Paused" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="UserInterface/Paused/Back to Game" to="UserInterface/Paused" method="_on_back_to_game_pressed"]

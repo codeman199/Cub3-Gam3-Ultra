@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy321582lvedx"]
+
+[ext_resource type="Script" path="res://src/Scripts/Pause_Menu.gd" id="1_0ww3w"]
+
+[node name="Pause Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ww3w")
+
+[node name="Retry" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.2
+anchor_top = -1.2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = 72.0
+offset_right = 1712.0
+offset_bottom = 888.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 0.313726)
+
+[node name="Title" type="Label" parent="Retry"]
+layout_mode = 0
+offset_left = 2536.0
+offset_top = 1312.0
+offset_right = 2593.0
+offset_bottom = 1360.0
+text = "Paused"
+
+[node name="Button" type="Button" parent="Retry"]
+layout_mode = 0
+offset_left = 2480.0
+offset_top = 1488.0
+offset_right = 2653.0
+offset_bottom = 1519.0
+text = "Return to Main Menu"
+
+[node name="Button2" type="Button" parent="Retry"]
+layout_mode = 0
+offset_left = 2504.0
+offset_top = 1440.0
+offset_right = 2619.0
+offset_bottom = 1471.0
+text = "Back to Game"

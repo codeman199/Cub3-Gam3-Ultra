@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vuvt8v6ia518"
-path="res://.godot/imported/Player.png-82cdbd9f566b06b84b4892fb354530c8.ctex"
+uid="uid://c2pb1eip3pwkc"
+path="res://.godot/imported/Enemy.png-358bc5e558745d0a2f8a7de873102210.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Aseprite/Player.png"
-dest_files=["res://.godot/imported/Player.png-82cdbd9f566b06b84b4892fb354530c8.ctex"]
+source_file="res://src/Resources/Enemy.png"
+dest_files=["res://.godot/imported/Enemy.png-358bc5e558745d0a2f8a7de873102210.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

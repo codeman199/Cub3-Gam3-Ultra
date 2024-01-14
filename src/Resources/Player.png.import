@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b31tf2un2n3um"
-path="res://.godot/imported/Pellet.png-9ed7e6c7a250018677a79c8e56573c4f.ctex"
+uid="uid://vuvt8v6ia518"
+path="res://.godot/imported/Player.png-2be6f90d91e6a12991f7bfbb22c86de5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Aseprite/Pellet.png"
-dest_files=["res://.godot/imported/Pellet.png-9ed7e6c7a250018677a79c8e56573c4f.ctex"]
+source_file="res://src/Resources/Player.png"
+dest_files=["res://.godot/imported/Player.png-2be6f90d91e6a12991f7bfbb22c86de5.ctex"]
 
 [params]
 

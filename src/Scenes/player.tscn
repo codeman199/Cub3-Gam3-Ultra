@@ -1,41 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://bik2cka8kpvms"]
+[gd_scene load_steps=6 format=3 uid="uid://bik2cka8kpvms"]
 
 [ext_resource type="Script" path="res://src/Scripts/Player.gd" id="1_1f663"]
-[ext_resource type="Script" path="res://src/Scripts/Player_movement.gd" id="2_2fy2t"]
-[ext_resource type="Texture2D" uid="uid://vuvt8v6ia518" path="res://src/Aseprite/Player.png" id="3_ui806"]
+[ext_resource type="Texture2D" uid="uid://vuvt8v6ia518" path="res://src/Resources/Player.png" id="3_ui806"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fba2"]
-size = Vector2(64, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qitu"]
+size = Vector2(100, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3uncm"]
-size = Vector2(60, 60)
+size = Vector2(96, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5yn8"]
-size = Vector2(64, 64)
+size = Vector2(100, 100)
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_1f663")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("2_2fy2t")
+[node name="border_collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5qitu")
 
-[node name="Sprite" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("3_ui806")
+[node name="Body" type="Node2D" parent="."]
 
-[node name="collision_body" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_7fba2")
-
-[node name="player_body" type="Area2D" parent="CharacterBody2D"]
-collision_mask = 4
-
-[node name="player_body" type="CollisionShape2D" parent="CharacterBody2D/player_body"]
-shape = SubResource("RectangleShape2D_3uncm")
-
-[node name="collect_body" type="Area2D" parent="CharacterBody2D"]
+[node name="player_body" type="Area2D" parent="Body"]
 collision_mask = 2
 
-[node name="collect_body" type="CollisionShape2D" parent="CharacterBody2D/collect_body"]
+[node name="player_body" type="CollisionShape2D" parent="Body/player_body"]
+shape = SubResource("RectangleShape2D_3uncm")
+
+[node name="collect_body" type="Area2D" parent="Body"]
+collision_mask = 4
+
+[node name="collect_body" type="CollisionShape2D" parent="Body/collect_body"]
 shape = SubResource("RectangleShape2D_i5yn8")
 
-[connection signal="area_entered" from="CharacterBody2D/player_body" to="." method="_on_player_body_area_entered"]
-[connection signal="area_entered" from="CharacterBody2D/collect_body" to="." method="_on_collect_radius_area_entered"]
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_ui806")
+
+[connection signal="area_entered" from="Body/player_body" to="." method="_on_player_body_area_entered"]
+[connection signal="area_entered" from="Body/collect_body" to="." method="_on_collect_body_area_entered"]
