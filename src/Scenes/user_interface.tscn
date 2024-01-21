@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhuf01csgu2od"]
+[gd_scene load_steps=10 format=3 uid="uid://dvoy22ltvhenn"]
 
-[ext_resource type="Script" path="res://src/Scripts/ScoreLabel.gd" id="1_mclk2"]
+[ext_resource type="Theme" uid="uid://d4tqea8vri4y" path="res://src/Resources/Themes/Menus.tres" id="2_2tp7y"]
+[ext_resource type="Script" path="res://src/Scripts/Pause_Menu.gd" id="3_2to2p"]
+[ext_resource type="Theme" uid="uid://mulacwjurnfv" path="res://src/Resources/Themes/Menu_Buttons.tres" id="4_kl0tx"]
 
-[sub_resource type="FontFile" id="FontFile_qca3v"]
+[sub_resource type="FontFile" id="FontFile_4tjuh"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -28,50 +33,143 @@ cache/0/32/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/32/0/kerning_overrides/22/0 = Vector2(0, 0)
 cache/0/32/0/kerning_overrides/32/0 = Vector2(0, 0)
 
-[sub_resource type="Theme" id="Theme_qmwew"]
-default_font = SubResource("FontFile_qca3v")
+[sub_resource type="Theme" id="Theme_gy51t"]
+default_font = SubResource("FontFile_4tjuh")
 default_font_size = 32
 
+[sub_resource type="InputEventKey" id="InputEventKey_wbaxw"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_ejo5w"]
+events = [SubResource("InputEventKey_wbaxw")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_2tvf4"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_r3wbt"]
+events = [SubResource("InputEventKey_2tvf4")]
+
 [node name="UserInterface" type="Control"]
+top_level = true
+visibility_layer = 16
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 1560.0
+offset_bottom = 880.0
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -229.0
+offset_right = -40.0
+offset_bottom = 91.0
+grow_horizontal = 0
+theme = SubResource("Theme_gy51t")
+text = "Score: 1 
+ High Score: 1"
+horizontal_alignment = 2
+
+[node name="Pause Button" type="Button" parent="GameUI"]
 layout_mode = 0
-offset_left = -3.0
-offset_top = -1.0
-offset_right = 58.0
-offset_bottom = 22.0
-theme = SubResource("Theme_qmwew")
-text = "Score: 0"
-script = ExtResource("1_mclk2")
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 79.0
+offset_bottom = 47.0
+shortcut = SubResource("Shortcut_ejo5w")
+text = "Pause"
 
 [node name="Retry" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0, 0, 0, 0.556863)
+
+[node name="Label" type="Label" parent="Retry"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -560.0
-offset_top = 376.0
-offset_right = -560.0
-offset_bottom = 376.0
+offset_left = -384.0
+offset_top = -114.0
+offset_right = 381.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2tp7y")
+text = "Press Enter to Retry"
+
+[node name="Paused" type="ColorRect" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-color = Color(0, 0, 0, 0.384314)
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_2to2p")
 
-[node name="Label" type="Label" parent="Retry"]
+[node name="Label" type="Label" parent="Paused"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -11.5
-offset_right = 75.0
-offset_bottom = 11.5
+offset_left = -152.0
+offset_top = -314.0
+offset_right = 129.0
+offset_bottom = -204.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Press Enter to retry"
+theme = ExtResource("2_2tp7y")
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Back to Game" type="Button" parent="Paused"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 320.0
+offset_right = 1069.0
+offset_bottom = 438.0
+theme = ExtResource("4_kl0tx")
+shortcut = SubResource("Shortcut_r3wbt")
+text = "Back to Game"
+
+[node name="Return to Main Menu" type="Button" parent="Paused"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 504.0
+offset_right = 1207.0
+offset_bottom = 622.0
+theme = ExtResource("4_kl0tx")
+text = "Return to Main Menu"
+
+[connection signal="pressed" from="GameUI/Pause Button" to="Paused" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="Paused/Back to Game" to="Paused" method="_on_back_to_game_pressed"]
+[connection signal="pressed" from="Paused/Return to Main Menu" to="Paused" method="_on_return_to_main_menu_pressed"]

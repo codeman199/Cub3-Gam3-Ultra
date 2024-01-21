@@ -1,5 +1,5 @@
 extends Control
 
 func _on_button_pressed():
-	get_tree().change_scene_to_file("res://src/Scenes/game_scene.tscn")
+	Global.goto_scene("res://src/Scenes/game_scene.tscn")
 	pass
